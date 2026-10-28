@@ -13,6 +13,7 @@
     <meta property="og:type" content="website">
 
     <!-- Fonts: Cormorant Garamond, Great Vibes, Cinzel & DM Sans -->
+    <link rel="icon" href="img/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -30,11 +31,10 @@
                         brand: {
                             ivory: '#F7F2E9',
                             gold: '#C6A66B',
-                            goldhover: '#B29155',
                             blush: '#E8D1CA',
-                            sage: '#899780',
                             espresso: '#302720',
-                            card: '#FAF6F0',
+                            coffee: '#D9C4AB',
+                            coffeedeep: '#7A4E2F',
                             darkbg: '#251E18'
                         }
                     },
@@ -44,17 +44,14 @@
                         script: ['"Great Vibes"', 'cursive'],
                         cinzel: ['"Cinzel"', 'serif']
                     },
-                    boxShadow: {
-                        'soft': '0 20px 40px -15px rgba(48, 39, 32, 0.07)',
-                        'float': '0 25px 50px -12px rgba(198, 166, 107, 0.18)',
-                        'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.6)'
-                    }
                 }
             }
         }
     </script>
 
     <style>
+        html { scroll-padding-top: 5rem; }
+
         body {
             background-color: #F7F2E9;
             color: #302720;
@@ -62,7 +59,7 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .font-serif-custom {
+        h1, h2, h3, h4 {
             font-family: 'Cormorant Garamond', Georgia, serif;
         }
 
@@ -72,11 +69,7 @@
         }
 
         /* Gold gradient text effect matching the logo */
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #DFBE7E 0%, #C6A66B 50%, #9A773B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .gold-gradient-text { color: #B08D57; }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -86,11 +79,11 @@
             background: #F7F2E9;
         }
         ::-webkit-scrollbar-thumb {
-            background: #C6A66B;
+            background: #7A4E2F;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #B29155;
+            background: #5E3B22;
         }
 
         /* Device Phone Mockup Frame Styling */
@@ -99,7 +92,7 @@
             border-radius: 36px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             position: relative;
-            background: #fff;
+            background: #F7F2E9;
             overflow: hidden;
         }
         .phone-mockup::before {
@@ -121,8 +114,8 @@
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
         }
         .hover-lift:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -10px rgba(48, 39, 32, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 30px -16px rgba(48, 39, 32, 0.22);
         }
 
         /* Subtle Accent Line Animation */
@@ -136,22 +129,59 @@
             left: 0;
             width: 0;
             height: 1px;
-            background-color: #C6A66B;
+            background-color: #7A4E2F;
             transition: width 0.3s ease;
         }
         .gold-line-grow:hover::after {
             width: 100%;
         }
 
-        /* Delicate floral background motif SVG pattern */
-        .bg-botanical {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C6A66B' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4H-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+
+        /* Header shadow once the page is scrolled */
+        #main-header.is-scrolled { box-shadow: 0 8px 24px -12px rgba(48, 39, 32, 0.18); }
+
+        /* Form fields */
+        .field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            background: #F8F4EC;
+            border: 1px solid rgba(198, 166, 107, 0.25);
+            color: #302720;
+            font-size: 0.875rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+        .field:focus {
+            outline: none;
+            border-color: #C6A66B;
+            box-shadow: 0 0 0 3px rgba(198, 166, 107, 0.2);
+        }
+
+        /* Occasion carousel */
+        .occasion-track { transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .occasion-dot {
+            width: 12px; height: 12px;
+            border: 2px solid #7A4E2F;
+            background: transparent;
+            transition: background-color 0.25s ease, transform 0.25s ease;
+        }
+        .occasion-dot[aria-current="true"] { background: #7A4E2F; transform: scale(1.15); }
+
+        /* Keyboard focus + reduced motion */
+        a:focus-visible, button:focus-visible, select:focus-visible {
+            outline: 2px solid #7A4E2F;
+            outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+        }
+
     </style>
 </head>
 <body class="bg-brand-ivory text-brand-espresso antialiased selection:bg-brand-blush selection:text-brand-espresso">
 
-    <!-- SECTION 1: NAVIGATION -->
+    <!-- NAVIGATION -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-brand-ivory/90 backdrop-blur-md border-b border-brand-gold/15">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
             <!-- Brand Logo Mark with User's Uploaded Seal -->
@@ -168,38 +198,38 @@
             </a>
 
             <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide uppercase text-brand-espresso/80">
-                <a href="#home" class="hover:text-brand-gold transition-colors py-1 gold-line-grow">Home</a>
-                <a href="#about" class="hover:text-brand-gold transition-colors py-1 gold-line-grow">About</a>
-                <a href="#services" class="hover:text-brand-gold transition-colors py-1 gold-line-grow">Services</a>
-                <a href="#work" class="hover:text-brand-gold transition-colors py-1 gold-line-grow">Our Work</a>
-                <a href="#how-it-works" class="hover:text-brand-gold transition-colors py-1 gold-line-grow">How It Works</a>
-                <a href="#faq" class="hover:text-brand-gold transition-colors py-1 gold-line-grow">FAQ</a>
+            <nav class="hidden lg:flex items-center gap-8 text-[12px] font-medium tracking-[0.14em] uppercase text-brand-espresso/80">
+                <a href="#home" class="hover:text-brand-coffeedeep transition-colors py-1 gold-line-grow">Home</a>
+                <a href="#about" class="hover:text-brand-coffeedeep transition-colors py-1 gold-line-grow">About</a>
+                <a href="#occasions" class="hover:text-brand-coffeedeep transition-colors py-1 gold-line-grow">What We Create</a>
+                <a href="#work" class="hover:text-brand-coffeedeep transition-colors py-1 gold-line-grow">Our Work</a>
+                <a href="#how-it-works" class="hover:text-brand-coffeedeep transition-colors py-1 gold-line-grow">How It Works</a>
+                <a href="#faq" class="hover:text-brand-coffeedeep transition-colors py-1 gold-line-grow">FAQ</a>
             </nav>
 
             <!-- CTA Button & Mobile Toggle -->
             <div class="flex items-center gap-4">
-                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-brand-ivory bg-brand-espresso hover:bg-brand-gold transition-all duration-300 rounded-full shadow-sm hover:shadow">
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-brand-ivory bg-brand-espresso hover:bg-brand-coffeedeep transition-all duration-300 rounded-sm shadow-sm hover:shadow">
                     Create Your Invitation
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-brand-espresso hover:text-brand-gold focus:outline-none" aria-label="Toggle Navigation Menu">
+                <button id="mobile-menu-btn" class="lg:hidden p-2 text-brand-espresso hover:text-brand-gold focus:outline-none" aria-label="Toggle Navigation Menu">
                     <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-ivory border-b border-brand-gold/20 px-6 py-6 transition-all duration-300">
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-ivory border-b border-brand-gold/20 px-6 py-6 transition-all duration-300">
             <div class="flex flex-col gap-4 text-center text-sm uppercase tracking-widest font-medium">
-                <a href="#home" class="py-2 hover:text-brand-gold transition-colors mobile-link">Home</a>
-                <a href="#about" class="py-2 hover:text-brand-gold transition-colors mobile-link">About</a>
-                <a href="#services" class="py-2 hover:text-brand-gold transition-colors mobile-link">Services</a>
-                <a href="#work" class="py-2 hover:text-brand-gold transition-colors mobile-link">Our Work</a>
-                <a href="#how-it-works" class="py-2 hover:text-brand-gold transition-colors mobile-link">How It Works</a>
-                <a href="#faq" class="py-2 hover:text-brand-gold transition-colors mobile-link">FAQ</a>
-                <a href="#contact" class="mt-2 inline-block px-6 py-3 text-xs font-semibold tracking-widest text-brand-ivory bg-brand-espresso hover:bg-brand-gold transition-colors rounded-full mobile-link">
+                <a href="#home" class="py-2 hover:text-brand-coffeedeep transition-colors mobile-link">Home</a>
+                <a href="#about" class="py-2 hover:text-brand-coffeedeep transition-colors mobile-link">About</a>
+                <a href="#occasions" class="py-2 hover:text-brand-coffeedeep transition-colors mobile-link">What We Create</a>
+                <a href="#work" class="py-2 hover:text-brand-coffeedeep transition-colors mobile-link">Our Work</a>
+                <a href="#how-it-works" class="py-2 hover:text-brand-coffeedeep transition-colors mobile-link">How It Works</a>
+                <a href="#faq" class="py-2 hover:text-brand-coffeedeep transition-colors mobile-link">FAQ</a>
+                <a href="#contact" class="mt-2 inline-block px-6 py-3 text-xs font-semibold tracking-widest text-brand-ivory bg-brand-espresso hover:bg-brand-coffeedeep transition-colors rounded-full mobile-link">
                     Create Your Invitation
                 </a>
             </div>
@@ -207,53 +237,34 @@
     </header>
 
     <main class="pt-20">
-        <!-- SECTION 2: HERO SECTION -->
-        <section id="home" class="relative min-h-[90vh] flex items-center py-16 lg:py-24 bg-botanical overflow-hidden">
-            <!-- Decorative Accent Elements -->
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-blush/30 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute bottom-10 -left-20 w-80 h-80 bg-brand-sage/15 rounded-full blur-2xl pointer-events-none"></div>
-
+        <!-- HERO -->
+        <section id="home" class="py-20 lg:py-28 bg-brand-ivory">
             <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                <!-- Text Content Column -->
-                <div class="lg:col-span-7 flex flex-col items-start text-left z-10">
-                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/20 text-brand-espresso text-xs font-semibold tracking-widest uppercase mb-6 shadow-sm">
-                        <img src="img/logo.png" alt="EverD Seal" class="w-4 h-4 rounded-full object-cover">
-                        Digital Wedding Invitations & Websites
-                    </div>
+                <div class="lg:col-span-7 flex flex-col items-start text-left">
 
-                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal leading-tight text-brand-espresso mb-6">
+                    <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-brand-espresso mb-8">
                         Your love story, <br/>
-                        <span class="italic font-light gold-gradient-text font-serif">beautifully invited.</span>
+                        <span class="italic font-normal text-brand-coffeedeep">beautifully invited.</span>
                     </h1>
 
-                    <p class="text-base sm:text-lg text-brand-espresso/80 font-light max-w-2xl leading-relaxed mb-8">
-                        More than an invitation, it’s the beginning of your celebration. We create personalized digital wedding invitations and interactive wedding websites that capture your story, your style, and the moments that make your love unique.
+                    <p class="text-base sm:text-lg text-brand-espresso/70 max-w-xl leading-relaxed mb-10">
+                        We design personalised digital wedding invitations and wedding websites for couples who want something that feels like them. Share one link on WhatsApp and your guests get the schedule, location and RSVP in one place.
                     </p>
 
                     <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-semibold text-brand-ivory bg-brand-espresso hover:bg-brand-gold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl text-center">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-semibold text-brand-ivory bg-brand-espresso hover:bg-brand-coffeedeep transition-colors duration-300 rounded-sm text-center">
                             Create Your Invitation
                         </a>
-                        <a href="#work" class="w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-semibold text-brand-espresso border border-brand-espresso/30 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 rounded-full text-center bg-white/50 backdrop-blur-sm">
+                        <a href="#work" class="w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-semibold text-brand-espresso border border-brand-espresso/30 hover:border-brand-coffeedeep hover:text-brand-coffeedeep transition-colors duration-300 rounded-sm text-center">
                             Explore Our Work
                         </a>
                     </div>
-
-                    <div class="mt-10 pt-6 border-t border-brand-gold/20 w-full max-w-lg">
-                        <p class="text-xs tracking-widest uppercase text-brand-espresso/60 font-medium">
-                            ✦ Thoughtfully designed &nbsp;•&nbsp; Beautifully personalized &nbsp;•&nbsp; Made for your forever
-                        </p>
-                    </div>
                 </div>
 
-                <!-- Visual Preview Column (Live Mockup Frame & Logo Seal Display) -->
-                <div class="lg:col-span-5 flex justify-center lg:justify-end z-10">
+                <div class="lg:col-span-5 flex justify-center lg:justify-end">
                     <div class="relative w-full max-w-[320px] sm:max-w-[340px]">
-                        <!-- Decorative Frame Backdrop -->
-                        <div class="absolute -inset-4 bg-gradient-to-tr from-brand-blush/40 to-brand-gold/20 rounded-[48px] transform rotate-2 blur-sm"></div>
-                        
                         <!-- Phone Mockup Container -->
-                        <div class="phone-mockup aspect-[9/18] w-full flex flex-col justify-between p-4 text-center relative z-10 bg-[#FAF7F2]">
+                        <div class="phone-mockup aspect-[9/18] w-full flex flex-col justify-between p-4 text-center relative z-10 bg-brand-ivory">
                             <!-- Mockup Internal Header Banner with Logo Seal -->
                             <div class="mt-4 pt-2 flex flex-col items-center">
                                 <div class="w-14 h-14 rounded-full border border-brand-gold shadow-md overflow-hidden bg-white mb-2">
@@ -266,13 +277,10 @@
 
                             <!-- Mockup Visual Showcase Area -->
                             <div class="my-auto py-2">
-                                <div class="relative rounded-2xl overflow-hidden shadow-inner border border-brand-gold/20 group">
+                                <div class="relative rounded-lg overflow-hidden shadow-inner border border-brand-gold/20 group">
                                     <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Wedding invitation preview showcase" class="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-espresso/60 via-transparent to-transparent flex items-end justify-center p-3">
-                                        <span class="text-[11px] text-brand-ivory font-light italic">"Two hearts, one journey"</span>
-                                    </div>
                                 </div>
-                                <div class="mt-4 bg-white/80 backdrop-blur rounded-xl p-3 shadow-sm border border-brand-gold/10">
+                                <div class="mt-4 bg-white rounded-xl p-3 shadow-sm border border-brand-gold/10">
                                     <p class="text-[11px] font-medium text-brand-espresso uppercase tracking-wider">Saturday, December 12, 2026</p>
                                     <p class="text-[10px] text-brand-espresso/70 mt-0.5">Udaipur Palace & Gardens</p>
                                 </div>
@@ -283,17 +291,6 @@
                                 <div class="bg-brand-espresso text-brand-ivory text-[10px] uppercase tracking-widest py-2 rounded-lg font-medium shadow-sm">
                                     RSVP & View Schedule
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-brand-gold/20 z-20 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-brand-blush/40 flex items-center justify-center text-brand-gold overflow-hidden">
-                                <img src="img/logo.png" alt="Seal" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <p class="text-xs font-semibold text-brand-espresso">100% Interactive</p>
-                                <p class="text-[10px] text-brand-espresso/60">Music, Maps & RSVP Ready</p>
                             </div>
                         </div>
                     </div>
@@ -321,10 +318,7 @@
                                 EverD Wedding was created around a simple belief: the invitation should feel like the beginning of something beautiful.
                             </p>
                             <p>
-                                We design personalized digital wedding invitations and interactive wedding websites that bring each couple’s story to life. From elegant, minimal designs to vibrant celebrations filled with personality, every detail is thoughtfully considered to reflect the people and traditions behind the occasion.
-                            </p>
-                            <p>
-                                With beautiful visuals, meaningful details, and interactive experiences, we turn a simple invitation into something guests will love opening and remembering.
+                                We design personalized digital wedding invitations and interactive wedding websites that bring each couple’s story to life.
                             </p>
                             <p class="font-serif italic text-lg text-brand-espresso font-normal pt-2 border-l-2 border-brand-gold pl-4">
                                 "Because your wedding invitation is more than information. It is the first glimpse of your forever."
@@ -332,23 +326,23 @@
                         </div>
 
                         <!-- 3 Brand Values -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-brand-ivory">
-                            <div class="p-4 rounded-xl bg-brand-ivory/50 border border-brand-gold/10">
-                                <h3 class="font-serif text-lg font-semibold text-brand-espresso mb-1">Made Personal</h3>
-                                <p class="text-xs text-brand-espresso/70 leading-relaxed">
-                                    Every design is shaped around your story, preferences, and celebration.
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+                            <div class="pt-5 border-t border-brand-coffeedeep/30">
+                                <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Made for you</h3>
+                                <p class="text-sm text-brand-espresso/70 leading-relaxed">
+                                    Every design starts from your story, your colours and your wedding details.
                                 </p>
                             </div>
-                            <div class="p-4 rounded-xl bg-brand-ivory/50 border border-brand-gold/10">
-                                <h3 class="font-serif text-lg font-semibold text-brand-espresso mb-1">Beautifully Digital</h3>
-                                <p class="text-xs text-brand-espresso/70 leading-relaxed">
-                                    Thoughtful layouts and interactive details create a memorable experience on every screen.
+                            <div class="pt-5 border-t border-brand-coffeedeep/30">
+                                <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Works on every phone</h3>
+                                <p class="text-sm text-brand-espresso/70 leading-relaxed">
+                                    Clean layouts that load quickly and read well on any screen.
                                 </p>
                             </div>
-                            <div class="p-4 rounded-xl bg-brand-ivory/50 border border-brand-gold/10">
-                                <h3 class="font-serif text-lg font-semibold text-brand-espresso mb-1">Designed With Care</h3>
-                                <p class="text-xs text-brand-espresso/70 leading-relaxed">
-                                    From the first concept to the final link, every detail matters.
+                            <div class="pt-5 border-t border-brand-coffeedeep/30">
+                                <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Handled start to finish</h3>
+                                <p class="text-sm text-brand-espresso/70 leading-relaxed">
+                                    We take care of the design, the revisions and the final link.
                                 </p>
                             </div>
                         </div>
@@ -357,18 +351,8 @@
                     <!-- Editorial Image Column -->
                     <div class="lg:col-span-5">
                         <div class="relative">
-                            <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-8 border-brand-ivory">
-                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" alt="EverD Wedding Design Studio aesthetics" class="w-full h-full object-cover">
-                            </div>
-                            <!-- Overlay Card with Logo Seal -->
-                            <div class="absolute -bottom-6 -right-6 sm:bottom-8 sm:-left-8 bg-brand-espresso text-brand-ivory p-6 rounded-2xl shadow-xl max-w-xs border border-brand-gold/30 flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full border border-brand-gold overflow-hidden bg-white flex-shrink-0">
-                                    <img src="img/logo.png" alt="Seal" class="w-full h-full object-cover">
-                                </div>
-                                <div>
-                                    <p class="font-brand-cinzel text-[10px] text-brand-gold tracking-widest mb-0.5">BESPOKE</p>
-                                    <p class="text-xs text-brand-ivory/90 leading-relaxed font-light">Crafting digital heirlooms for modern couples.</p>
-                                </div>
+                            <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-xl">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" alt="EverD Wedding Design Studio aesthetics" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
@@ -377,245 +361,304 @@
             </div>
         </section>
 
-        <!-- SECTION 4: OUR SERVICES -->
-        <section id="services" class="py-20 lg:py-28 bg-brand-ivory">
+        <!-- WHAT WE CREATE -->
+        <section id="occasions" class="py-16 lg:py-24 bg-brand-ivory">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold block mb-3 font-brand-cinzel">
-                        WHAT WE CREATE
-                    </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-espresso mb-4">
-                        A beautiful beginning, <span class="italic font-light gold-gradient-text">in every detail.</span>
+                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                    <h2 class="font-serif text-4xl lg:text-5xl font-medium text-brand-espresso mb-4">
+                        An invitation for every occasion.
                     </h2>
-                    <p class="text-base text-brand-espresso/75 font-light leading-relaxed">
-                        Whether you want a simple digital invite or a complete online wedding experience, we help you share your celebration in a way that feels unmistakably yours.
+                    <p class="text-base text-brand-espresso/75 leading-relaxed">
+                        Weddings are our focus, but we also design invitations for the celebrations around them.
                     </p>
                 </div>
 
-                <!-- 4 Service Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <!-- Service 01 -->
-                    <div class="bg-white p-8 lg:p-10 rounded-2xl border border-brand-gold/15 shadow-sm hover-lift flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-6">
-                                <span class="font-serif text-3xl font-light text-brand-gold">01</span>
-                                <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-espresso">
-                                    <i class="fa-regular fa-envelope-open text-lg"></i>
+                <div id="occasion-carousel" class="relative" role="region" aria-roledescription="carousel" aria-label="Invitation occasions">
+                    <div id="occasion-viewport" class="overflow-hidden -mx-1.5 sm:-mx-3 select-none cursor-grab active:cursor-grabbing" style="touch-action: pan-y;">
+                        <div id="occasion-track" class="occasion-track flex items-stretch">
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">01</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-dove text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Baptism Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Meaningful digital invites for your child’s special day.</p>
                                 </div>
-                            </div>
-                            <h3 class="font-serif text-2xl font-semibold text-brand-espresso mb-3">Digital Wedding Invitations</h3>
-                            <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
-                                Beautiful, personalized invitations designed to share your special announcement with family and friends across WhatsApp, email, or direct link.
-                            </p>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Cross & christening motifs</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Church and reception details</li>
+                                </ul>
+                            </article>
                         </div>
-                        <ul class="text-xs text-brand-espresso/80 space-y-2 pt-4 border-t border-brand-ivory">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Single-card or multi-page formats</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Customized typography & colors</li>
-                        </ul>
-                    </div>
 
-                    <!-- Service 02 -->
-                    <div class="bg-white p-8 lg:p-10 rounded-2xl border border-brand-gold/15 shadow-sm hover-lift flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-6">
-                                <span class="font-serif text-3xl font-light text-brand-gold">02</span>
-                                <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-espresso">
-                                    <i class="fa-solid fa-globe text-lg"></i>
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">02</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-ring text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Engagement Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Stylish e-invites to announce your engagement.</p>
                                 </div>
-                            </div>
-                            <h3 class="font-serif text-2xl font-semibold text-brand-espresso mb-3">Interactive Wedding Websites</h3>
-                            <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
-                                Personal wedding websites featuring event schedules, interactive venue location maps, photo galleries, and guest RSVP management.
-                            </p>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Ring ceremony schedule</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Venue map & RSVP</li>
+                                </ul>
+                            </article>
                         </div>
-                        <ul class="text-xs text-brand-espresso/80 space-y-2 pt-4 border-t border-brand-ivory">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Embedded Google Maps & Calendar links</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Live RSVP & Dietary preference forms</li>
-                        </ul>
-                    </div>
 
-                    <!-- Service 03 -->
-                    <div class="bg-white p-8 lg:p-10 rounded-2xl border border-brand-gold/15 shadow-sm hover-lift flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-6">
-                                <span class="font-serif text-3xl font-light text-brand-gold">03</span>
-                                <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-espresso">
-                                    <i class="fa-solid fa-film text-lg"></i>
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">03</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-champagne-glasses text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Anniversary Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Memorable digital invitations for your special milestones.</p>
                                 </div>
-                            </div>
-                            <h3 class="font-serif text-2xl font-semibold text-brand-espresso mb-3">Animated & Storytelling Invitations</h3>
-                            <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
-                                Visually engaging invitations with elegant motion effects, subtle background music, photo slide sequences, and romantic story elements.
-                            </p>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Photo timeline of your years</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Music & message section</li>
+                                </ul>
+                            </article>
                         </div>
-                        <ul class="text-xs text-brand-espresso/80 space-y-2 pt-4 border-t border-brand-ivory">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Background audio & entrance animations</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Couple milestone timeline</li>
-                        </ul>
-                    </div>
 
-                    <!-- Service 04 -->
-                    <div class="bg-white p-8 lg:p-10 rounded-2xl border border-brand-gold/15 shadow-sm hover-lift flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-6">
-                                <span class="font-serif text-3xl font-light text-brand-gold">04</span>
-                                <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-espresso">
-                                    <i class="fa-solid fa-layer-group text-lg"></i>
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">04</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-baby text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Baby Shower Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Charming e-invites to welcome your little one.</p>
                                 </div>
-                            </div>
-                            <h3 class="font-serif text-2xl font-semibold text-brand-espresso mb-3">Multi-Event Wedding Invitations</h3>
-                            <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
-                                Coordinated digital invitation suites for multi-day celebrations including Engagement, Mehendi, Haldi, Sangeet, Ceremony & Reception.
-                            </p>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Playful themes & colors</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Gift registry link</li>
+                                </ul>
+                            </article>
                         </div>
-                        <ul class="text-xs text-brand-espresso/80 space-y-2 pt-4 border-t border-brand-ivory">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Cohesive cultural motifs & dress code notes</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Dedicated ceremony breakdown pages</li>
-                        </ul>
-                    </div>
 
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">05</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-cake-candles text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Birthday Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Joyful digital invites for birthdays big and small.</p>
+                                </div>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Age-themed designs</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Countdown & RSVP</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">06</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-house-chimney text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Housewarming Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Warm e-invites to open the doors to your new home.</p>
+                                </div>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Muhurat & address map</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Simple RSVP via WhatsApp</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">07</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-calendar-days text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Save the Date</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Elegant announcements so your guests can plan ahead.</p>
+                                </div>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Date, city & countdown</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Add-to-calendar link</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <div class="occasion-slide flex-none w-1/2 lg:w-1/4 px-1.5 sm:px-3">
+                            <article class="h-full bg-brand-coffee p-3.5 sm:p-6 lg:p-7 rounded-lg border border-brand-coffeedeep/25 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 sm:mb-6">
+                                        <span class="font-serif text-xl sm:text-3xl text-brand-coffeedeep">08</span>
+                                        <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/70 flex items-center justify-center text-brand-espresso flex-shrink-0">
+                                            <i class="fa-solid fa-graduation-cap text-xs sm:text-lg" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-serif text-sm sm:text-xl font-semibold text-brand-espresso mb-1.5 sm:mb-3">Graduation Invitations</h3>
+                                    <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6">Proud, polished invites to celebrate your big achievement.</p>
+                                </div>
+                                <ul class="text-[10px] sm:text-xs text-brand-espresso/80 space-y-1.5 sm:space-y-2 pt-2 sm:pt-4 border-t border-brand-coffeedeep/30 mt-auto">
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Ceremony & party details</li>
+                                    <li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-brand-coffeedeep text-[9px] mt-[3px] sm:mt-1"></i> Photo & achievement highlights</li>
+                                </ul>
+                            </article>
+                        </div>
+                        </div>
+                    </div>
+                    <div id="occasion-dots" class="flex items-center justify-center gap-2 mt-8"></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: FEATURED WORK / PORTFOLIO -->
-        <section id="work" class="py-20 lg:py-28 bg-white border-y border-brand-gold/10">
+        <!-- FEATURED WORK / PORTFOLIO -->
+        <section id="work" class="py-16 lg:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                     <div>
-                        <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold block mb-3 font-brand-cinzel">
-                            A GLIMPSE OF OUR WORK
-                        </span>
-                        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-espresso">
-                            Stories we've <span class="italic font-light gold-gradient-text">brought to life.</span>
+                        <h2 class="font-serif text-4xl lg:text-5xl font-medium text-brand-espresso">
+                            Our recent work.
                         </h2>
                     </div>
-                    <p class="text-sm text-brand-espresso/70 max-w-md font-light leading-relaxed">
-                        Every celebration has its own personality. Explore our featured digital invitations and interactive wedding suites created for real celebrations.
+                    <p class="text-sm text-brand-espresso/70 max-w-md leading-relaxed">
+                        A selection of invitations we have designed. Open any preview to see the full invitation.
                     </p>
                 </div>
 
-                <!-- Featured Work Projects Grid (4 Templates) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
-                    
-                    <!-- PROJECT 1: The Royal Heritage Suite -->
-                    <div class="bg-brand-ivory rounded-3xl overflow-hidden border border-brand-gold/20 shadow-sm hover-lift flex flex-col group">
-                        <div class="relative h-80 sm:h-96 overflow-hidden bg-brand-espresso/5">
-                            <img src="/img/jnt.png" alt="The Royal Heritage Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                       
+                <!-- 2 COLUMNS ON MOBILE (grid-cols-2) & DESKTOP (2 ROWS x 2 COLUMNS) -->
+                <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:gap-10">
+                    <!-- Template 1 -->
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden border border-brand-coffeedeep/15 hover-lift flex flex-col group h-full">
+                        <div class="relative h-40 sm:h-72 lg:h-80 overflow-hidden bg-brand-espresso/5">
+                            <img loading="lazy" src="img/templ1.jpg" alt="Minimalist Elegance Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
 
-                        <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div class="p-3 sm:p-6 lg:p-8 flex-1 flex flex-col justify-between">
                             <div>
-                                <h3 class="font-serif text-2xl lg:text-3xl font-semibold text-brand-espresso mb-2">
-                                    Jibin & Thara
+                                <h3 class="font-serif text-base sm:text-2xl lg:text-3xl font-semibold text-brand-espresso mb-1 sm:mb-2">
+                                    Template 1
                                 </h3>
-                                <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
-                                    A timeless celebration of love, designed with an understated elegance inspired by nature. This bespoke digital wedding invitation brings together romantic visuals, botanical details, an interactive multi-event schedule and curated music — creating a beautiful and effortless experience for every guest.
-                                </p>
-                            </div>
-
-                            <div class="pt-4 border-t border-brand-gold/20 flex items-center justify-between">
-                                <span class="text-xs text-brand-gold font-medium">Kerala</span>
-                                <a href="https://wedding-invitation-weld-theta.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-gold transition-colors">
-                                    Preview <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROJECT 2: Minimalist Elegance Suite -->
-                    <div class="bg-brand-ivory rounded-3xl overflow-hidden border border-brand-gold/20 shadow-sm hover-lift flex flex-col group">
-                        <div class="relative h-80 sm:h-96 overflow-hidden bg-brand-espresso/5">
-                            <img src="img/templ1.jpg" alt="Minimalist Elegance Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        </div>
-
-                        <div class="p-8 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif text-2xl lg:text-3xl font-semibold text-brand-espresso mb-2">
-                                    Template
-                                </h3>
-                                <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
+                                <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6 line-clamp-3 sm:line-clamp-none">
                                     A serene, editorial-style online invitation highlighting clean typography, warm ivory tones, a couple photo timeline, and direct Google Maps location pin integration.
                                 </p>
                             </div>
 
-                            <div class="pt-4 border-t border-brand-gold/20 flex items-center justify-between">
-                                <span class="text-xs text-brand-gold font-medium">Explore</span>
-                                <a href="https://template1-iota-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-gold transition-colors">
-                                    Preview <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <div class="pt-2 sm:pt-4 border-t border-brand-gold/20 flex items-center justify-between mt-auto">
+                                <span class="text-[10px] sm:text-xs text-brand-coffeedeep font-medium">Editorial</span>
+                                <a href="https://template1-iota-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-coffeedeep transition-colors">
+                                    Preview <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- PROJECT 3: Emerald & Gold Celestial (NEW TEMPLATE) -->
-                    <div class="bg-brand-ivory rounded-3xl overflow-hidden border border-brand-gold/20 shadow-sm hover-lift flex flex-col group">
-                        <div class="relative h-80 sm:h-96 overflow-hidden bg-brand-espresso/5">
-                            <img src="img/jnm.jpeg" alt="Emerald & Gold Celestial Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <!-- Template 2 -->
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden border border-brand-coffeedeep/15 hover-lift flex flex-col group h-full">
+                        <div class="relative h-40 sm:h-72 lg:h-80 overflow-hidden bg-brand-espresso/5">
+                            <img loading="lazy" src="img/temp2.png" alt="Tuscan Sunset Garden Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
 
-                        <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div class="p-3 sm:p-6 lg:p-8 flex-1 flex flex-col justify-between">
                             <div>
-                                <h3 class="font-serif text-2xl lg:text-3xl font-semibold text-brand-espresso mb-2">
-                                    Jithin & Merlin 
+                                <h3 class="font-serif text-base sm:text-2xl lg:text-3xl font-semibold text-brand-espresso mb-1 sm:mb-2">
+                                    Template 2
                                 </h3>
-                                <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
-                                    A dreamy, regal design combining rich jewel tones with gold foil accents, customized audio player, guest countdown timer, and interactive venue navigation.
-                                </p>
-                            </div>
-
-                            <div class="pt-4 border-t border-brand-gold/20 flex items-center justify-between">
-                                <span class="text-xs text-brand-gold font-medium">Jaipur Palace</span>
-                                <a href="https://jithin-marlin-wedding-invitation.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-gold transition-colors">
-                                    Preview <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROJECT 4: Tuscan Sunset & Garden Elegance (NEW TEMPLATE) -->
-                    <div class="bg-brand-ivory rounded-3xl overflow-hidden border border-brand-gold/20 shadow-sm hover-lift flex flex-col group">
-                        <div class="relative h-80 sm:h-96 overflow-hidden bg-brand-espresso/5">
-                            <img src="img/temp2.png" alt="Tuscan Sunset Garden Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                         
-                        </div>
-
-                        <div class="p-8 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif text-2xl lg:text-3xl font-semibold text-brand-espresso mb-2">
-                                    Template
-                                </h3>
-                                <p class="text-sm text-brand-espresso/75 leading-relaxed font-light mb-6">
+                                <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6 line-clamp-3 sm:line-clamp-none">
                                     An elegant destination invitation suite featuring warm terracotta tones, interactive dress code guides, travel details, photo gallery slider, and online RSVP.
                                 </p>
                             </div>
 
-                            <div class="pt-4 border-t border-brand-gold/20 flex items-center justify-between">
-                                <span class="text-xs text-brand-gold font-medium">Florence, Italy</span>
-                                <a href="https://template2-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-gold transition-colors">
-                                    Preview <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <div class="pt-2 sm:pt-4 border-t border-brand-gold/20 flex items-center justify-between mt-auto">
+                                <span class="text-[10px] sm:text-xs text-brand-coffeedeep font-medium">Florence</span>
+                                <a href="https://template2-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-coffeedeep transition-colors">
+                                    Preview <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <!-- Jibin & Thara -->
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden border border-brand-coffeedeep/15 hover-lift flex flex-col group h-full">
+                        <div class="relative h-40 sm:h-72 lg:h-80 overflow-hidden bg-brand-espresso/5">
+                            <img loading="lazy" src="img/jnt.png" alt="The Royal Heritage Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+
+                        <div class="p-3 sm:p-6 lg:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-serif text-base sm:text-2xl lg:text-3xl font-semibold text-brand-espresso mb-1 sm:mb-2">
+                                    Jibin & Thara
+                                </h3>
+                                <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6 line-clamp-3 sm:line-clamp-none">
+                                    A timeless celebration of love with understated, nature-inspired elegance, romantic visuals, an interactive multi-event schedule and curated music.
+                                </p>
+                            </div>
+
+                            <div class="pt-2 sm:pt-4 border-t border-brand-gold/20 flex items-center justify-between mt-auto">
+                                <span class="text-[10px] sm:text-xs text-brand-coffeedeep font-medium">Kerala</span>
+                                <a href="https://wedding-invitation-weld-theta.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-coffeedeep transition-colors">
+                                    Preview <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Jithin & Merlin -->
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden border border-brand-coffeedeep/15 hover-lift flex flex-col group h-full">
+                        <div class="relative h-40 sm:h-72 lg:h-80 overflow-hidden bg-brand-espresso/5">
+                            <img loading="lazy" src="img/jnm.jpeg" alt="Emerald & Gold Celestial Suite Preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+
+                        <div class="p-3 sm:p-6 lg:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-serif text-base sm:text-2xl lg:text-3xl font-semibold text-brand-espresso mb-1 sm:mb-2">
+                                    Jithin & Merlin
+                                </h3>
+                                <p class="text-[11px] sm:text-sm text-brand-espresso/75 leading-tight sm:leading-relaxed mb-3 sm:mb-6 line-clamp-3 sm:line-clamp-none">
+                                    A dreamy, regal design combining rich jewel tones with gold foil accents, customized audio player, guest countdown timer, and interactive venue navigation.
+                                </p>
+                            </div>
+
+                            <div class="pt-2 sm:pt-4 border-t border-brand-gold/20 flex items-center justify-between mt-auto">
+                                <span class="text-[10px] sm:text-xs text-brand-coffeedeep font-medium">Jaipur</span>
+                                <a href="https://jithin-marlin-wedding-invitation.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs uppercase tracking-widest font-semibold text-brand-espresso hover:text-brand-coffeedeep transition-colors">
+                                    Preview <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
 
                 </div>
             </div>
         </section>
 
-
-
-        <!-- SECTION 7: HOW IT WORKS -->
-        <section id="how-it-works" class="py-20 lg:py-28 bg-white border-y border-brand-gold/10">
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="py-16 lg:py-24 bg-brand-ivory">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold block mb-3 font-brand-cinzel">
-                        FROM IDEA TO INVITATION
-                    </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-espresso">
-                        Your vision, <span class="italic font-light gold-gradient-text">thoughtfully brought to life.</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-medium text-brand-espresso">
+                        How it works
                     </h2>
                 </div>
 
@@ -623,38 +666,38 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
                     
                     <!-- Step 01 -->
-                    <div class="relative p-6 rounded-2xl bg-brand-ivory/50 border border-brand-gold/10 flex flex-col items-start">
-                        <span class="font-serif text-4xl font-light text-brand-gold mb-4">01</span>
-                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Tell Us Your Story</h3>
-                        <p class="text-xs text-brand-espresso/75 leading-relaxed font-light">
-                            Share your wedding dates, preferred style, colors, event breakdown, and design inspiration with our creative team.
+                    <div class="relative p-6 rounded-lg bg-white border border-brand-coffeedeep/15 flex flex-col items-start">
+                        <span class="font-serif text-4xl font-light text-brand-coffeedeep mb-4">01</span>
+                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Share your details</h3>
+                        <p class="text-sm text-brand-espresso/75 leading-relaxed">
+                            Send us your wedding date, events, preferred style and any reference designs you like.
                         </p>
                     </div>
 
                     <!-- Step 02 -->
-                    <div class="relative p-6 rounded-2xl bg-brand-ivory/50 border border-brand-gold/10 flex flex-col items-start">
-                        <span class="font-serif text-4xl font-light text-brand-gold mb-4">02</span>
-                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">We Create Your Design</h3>
-                        <p class="text-xs text-brand-espresso/75 leading-relaxed font-light">
-                            We develop a bespoke digital invitation concept and website prototype tailored precisely to your requirements.
+                    <div class="relative p-6 rounded-lg bg-white border border-brand-coffeedeep/15 flex flex-col items-start">
+                        <span class="font-serif text-4xl font-light text-brand-coffeedeep mb-4">02</span>
+                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">We design it</h3>
+                        <p class="text-sm text-brand-espresso/75 leading-relaxed">
+                            We prepare a first version of your invitation or website based on what you have shared.
                         </p>
                     </div>
 
                     <!-- Step 03 -->
-                    <div class="relative p-6 rounded-2xl bg-brand-ivory/50 border border-brand-gold/10 flex flex-col items-start">
-                        <span class="font-serif text-4xl font-light text-brand-gold mb-4">03</span>
-                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Refine the Details</h3>
-                        <p class="text-xs text-brand-espresso/75 leading-relaxed font-light">
-                            Review the interactive preview, fine-tune wording or photos, and request revisions according to the agreed project scope.
+                    <div class="relative p-6 rounded-lg bg-white border border-brand-coffeedeep/15 flex flex-col items-start">
+                        <span class="font-serif text-4xl font-light text-brand-coffeedeep mb-4">03</span>
+                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Review and refine</h3>
+                        <p class="text-sm text-brand-espresso/75 leading-relaxed">
+                            Look through the preview, adjust wording and photos, and request revisions within the agreed scope.
                         </p>
                     </div>
 
                     <!-- Step 04 -->
-                    <div class="relative p-6 rounded-2xl bg-brand-ivory/50 border border-brand-gold/10 flex flex-col items-start">
-                        <span class="font-serif text-4xl font-light text-brand-gold mb-4">04</span>
-                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Share Your Forever</h3>
-                        <p class="text-xs text-brand-espresso/75 leading-relaxed font-light">
-                            Receive your completed digital invitation link or customized wedding domain to easily share with all your guests.
+                    <div class="relative p-6 rounded-lg bg-white border border-brand-coffeedeep/15 flex flex-col items-start">
+                        <span class="font-serif text-4xl font-light text-brand-coffeedeep mb-4">04</span>
+                        <h3 class="font-serif text-xl font-semibold text-brand-espresso mb-2">Share the link</h3>
+                        <p class="text-sm text-brand-espresso/75 leading-relaxed">
+                            You receive the final link, or a custom domain if you have one, ready to send to your guests.
                         </p>
                     </div>
 
@@ -662,83 +705,80 @@
             </div>
         </section>
 
-        <!-- SECTION 8: FREQUENTLY ASKED QUESTIONS -->
-        <section id="faq" class="py-20 lg:py-28 bg-brand-ivory">
-            <div class="max-w-4xl mx-auto px-6 lg:px-12">
-                <div class="text-center mb-16">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold block mb-3 font-brand-cinzel">
-                        QUESTIONS & ANSWERS
-                    </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-espresso">
-                        A few things you <span class="italic font-light gold-gradient-text">might be wondering.</span>
+        <!-- FREQUENTLY ASKED QUESTIONS -->
+        <section id="faq" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-6 lg:px-12">
+                <div class="text-center mb-12 lg:mb-16">
+                    <h2 class="font-serif text-4xl lg:text-5xl font-medium text-brand-espresso">
+                        Frequently asked questions
                     </h2>
                 </div>
 
                 <!-- FAQ Accordion Container -->
-                <div class="space-y-4" id="faq-accordion">
+                <div class="space-y-3" id="faq-accordion">
                     
                     <!-- FAQ 1 -->
-                    <div class="bg-white rounded-2xl border border-brand-gold/15 overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(1)" class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none">
-                            <span class="font-serif text-lg font-semibold text-brand-espresso">What is a digital wedding invitation?</span>
-                            <i id="faq-icon-1" class="fa-solid fa-plus text-brand-gold text-sm transition-transform duration-300"></i>
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden">
+                        <button onclick="toggleFaq(1)" id="faq-btn-1" aria-expanded="false" aria-controls="faq-ans-1" class="w-full text-left py-5 px-6 flex justify-between items-center gap-6 focus:outline-none">
+                            <span class="font-serif text-xl font-semibold text-brand-espresso">What is a digital wedding invitation?</span>
+                            <i id="faq-icon-1" class="fa-solid fa-plus text-brand-coffeedeep text-sm transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-1" class="hidden px-6 pb-6 text-sm text-brand-espresso/80 font-light leading-relaxed border-t border-brand-ivory pt-4">
+                        <div id="faq-ans-1" class="hidden px-6 pb-6 pr-12 text-sm text-brand-espresso/75 leading-relaxed">
                             A digital wedding invitation is a personalized invitation that can be shared online through a link or supported digital sharing options. Depending on the design, it may include photos, animations, event details, music, and interactive features.
                         </div>
                     </div>
 
                     <!-- FAQ 2 -->
-                    <div class="bg-white rounded-2xl border border-brand-gold/15 overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(2)" class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none">
-                            <span class="font-serif text-lg font-semibold text-brand-espresso">Can I personalize my invitation?</span>
-                            <i id="faq-icon-2" class="fa-solid fa-plus text-brand-gold text-sm transition-transform duration-300"></i>
+                    <div class="bg-[#EBDFCF] rounded-lg overflow-hidden">
+                        <button onclick="toggleFaq(2)" id="faq-btn-2" aria-expanded="false" aria-controls="faq-ans-2" class="w-full text-left py-5 px-6 flex justify-between items-center gap-6 focus:outline-none">
+                            <span class="font-serif text-xl font-semibold text-brand-espresso">Can I personalize my invitation?</span>
+                            <i id="faq-icon-2" class="fa-solid fa-plus text-brand-coffeedeep text-sm transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-2" class="hidden px-6 pb-6 text-sm text-brand-espresso/80 font-light leading-relaxed border-t border-brand-ivory pt-4">
+                        <div id="faq-ans-2" class="hidden px-6 pb-6 pr-12 text-sm text-brand-espresso/75 leading-relaxed">
                             Yes. Designs can be tailored to your preferred colors, style, names, event details, photographs, background music, and other agreed requirements.
                         </div>
                     </div>
 
                     <!-- FAQ 3 -->
-                    <div class="bg-white rounded-2xl border border-brand-gold/15 overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(3)" class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none">
-                            <span class="font-serif text-lg font-semibold text-brand-espresso">Can you create invitations for multiple wedding events?</span>
-                            <i id="faq-icon-3" class="fa-solid fa-plus text-brand-gold text-sm transition-transform duration-300"></i>
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden">
+                        <button onclick="toggleFaq(3)" id="faq-btn-3" aria-expanded="false" aria-controls="faq-ans-3" class="w-full text-left py-5 px-6 flex justify-between items-center gap-6 focus:outline-none">
+                            <span class="font-serif text-xl font-semibold text-brand-espresso">Can you create invitations for multiple wedding events?</span>
+                            <i id="faq-icon-3" class="fa-solid fa-plus text-brand-coffeedeep text-sm transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-3" class="hidden px-6 pb-6 text-sm text-brand-espresso/80 font-light leading-relaxed border-t border-brand-ivory pt-4">
+                        <div id="faq-ans-3" class="hidden px-6 pb-6 pr-12 text-sm text-brand-espresso/75 leading-relaxed">
                             Yes. We can coordinate invitations for different ceremonies and celebrations based on your requirements, such as Engagement, Mehendi, Haldi, Sangeet, Ceremony, and Reception.
                         </div>
                     </div>
 
                     <!-- FAQ 4 -->
-                    <div class="bg-white rounded-2xl border border-brand-gold/15 overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(4)" class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none">
-                            <span class="font-serif text-lg font-semibold text-brand-espresso">How will I receive my invitation?</span>
-                            <i id="faq-icon-4" class="fa-solid fa-plus text-brand-gold text-sm transition-transform duration-300"></i>
+                    <div class="bg-[#EBDFCF] rounded-lg overflow-hidden">
+                        <button onclick="toggleFaq(4)" id="faq-btn-4" aria-expanded="false" aria-controls="faq-ans-4" class="w-full text-left py-5 px-6 flex justify-between items-center gap-6 focus:outline-none">
+                            <span class="font-serif text-xl font-semibold text-brand-espresso">How will I receive my invitation?</span>
+                            <i id="faq-icon-4" class="fa-solid fa-plus text-brand-coffeedeep text-sm transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-4" class="hidden px-6 pb-6 text-sm text-brand-espresso/80 font-light leading-relaxed border-t border-brand-ivory pt-4">
+                        <div id="faq-ans-4" class="hidden px-6 pb-6 pr-12 text-sm text-brand-espresso/75 leading-relaxed">
                             Your completed invitation will be shared digitally in the agreed format, such as a shareable website link, interactive web card, or video format for instant distribution via WhatsApp or social media.
                         </div>
                     </div>
 
                     <!-- FAQ 5 -->
-                    <div class="bg-white rounded-2xl border border-brand-gold/15 overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(5)" class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none">
-                            <span class="font-serif text-lg font-semibold text-brand-espresso">How do I get started?</span>
-                            <i id="faq-icon-5" class="fa-solid fa-plus text-brand-gold text-sm transition-transform duration-300"></i>
+                    <div class="bg-brand-ivory rounded-lg overflow-hidden">
+                        <button onclick="toggleFaq(5)" id="faq-btn-5" aria-expanded="false" aria-controls="faq-ans-5" class="w-full text-left py-5 px-6 flex justify-between items-center gap-6 focus:outline-none">
+                            <span class="font-serif text-xl font-semibold text-brand-espresso">How do I get started?</span>
+                            <i id="faq-icon-5" class="fa-solid fa-plus text-brand-coffeedeep text-sm transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-5" class="hidden px-6 pb-6 text-sm text-brand-espresso/80 font-light leading-relaxed border-t border-brand-ivory pt-4">
+                        <div id="faq-ans-5" class="hidden px-6 pb-6 pr-12 text-sm text-brand-espresso/75 leading-relaxed">
                             Contact EverD Wedding with your event date, preferred design style, and the type of invitation you need. We will discuss the requirements and provide the next steps.
                         </div>
                     </div>
 
                     <!-- FAQ 6 -->
-                    <div class="bg-white rounded-2xl border border-brand-gold/15 overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(6)" class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none">
-                            <span class="font-serif text-lg font-semibold text-brand-espresso">How much does a digital invitation cost?</span>
-                            <i id="faq-icon-6" class="fa-solid fa-plus text-brand-gold text-sm transition-transform duration-300"></i>
+                    <div class="bg-[#EBDFCF] rounded-lg overflow-hidden">
+                        <button onclick="toggleFaq(6)" id="faq-btn-6" aria-expanded="false" aria-controls="faq-ans-6" class="w-full text-left py-5 px-6 flex justify-between items-center gap-6 focus:outline-none">
+                            <span class="font-serif text-xl font-semibold text-brand-espresso">How much does a digital invitation cost?</span>
+                            <i id="faq-icon-6" class="fa-solid fa-plus text-brand-coffeedeep text-sm transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-6" class="hidden px-6 pb-6 text-sm text-brand-espresso/80 font-light leading-relaxed border-t border-brand-ivory pt-4">
+                        <div id="faq-ans-6" class="hidden px-6 pb-6 pr-12 text-sm text-brand-espresso/75 leading-relaxed">
                             Pricing depends on the design complexity, number of events, custom features requested (such as RSVP tracking or custom domains). Contact us for a personalized quote tailored to your budget.
                         </div>
                     </div>
@@ -747,63 +787,32 @@
             </div>
         </section>
 
-        <!-- SECTION 9: FINAL CALL TO ACTION -->
-        <section class="py-20 lg:py-24 bg-brand-espresso text-brand-ivory relative overflow-hidden">
-            <!-- Subtle Overlay Background Floral Accent -->
-            <div class="absolute inset-0 opacity-5 bg-botanical"></div>
-            
-            <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative z-10">
-                <div class="w-20 h-20 rounded-full border border-brand-gold/50 mx-auto mb-6 bg-white/10 backdrop-blur flex items-center justify-center p-1">
-                    <img src="img/logo.png" alt="Seal" class="w-full h-full object-cover rounded-full">
-                </div>
-                <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-tight mb-6">
-                    Let's create the first beautiful detail <br/>
-                    <span class="italic font-light gold-gradient-text font-serif">of your forever.</span>
-                </h2>
-                <p class="text-base sm:text-lg text-brand-ivory/80 max-w-2xl mx-auto font-light leading-relaxed mb-10">
-                    Tell us a little about your celebration, and let's create an invitation that feels unmistakably like you.
-                </p>
-
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#contact" class="px-8 py-4 text-xs font-semibold uppercase tracking-widest text-brand-espresso bg-brand-gold hover:bg-brand-goldhover transition-all duration-300 rounded-full shadow-lg">
-                        Let's Create Something Beautiful
-                    </a>
-                    <a href="#work" class="px-8 py-4 text-xs font-semibold uppercase tracking-widest text-brand-ivory border border-brand-ivory/30 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 rounded-full">
-                        Explore Our Work
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 10: CONTACT FORM -->
-        <section id="contact" class="py-20 lg:py-28 bg-white">
+        <!-- CONTACT FORM -->
+        <section id="contact" class="py-16 lg:py-24 bg-brand-ivory">
             <div class="max-w-4xl mx-auto px-6 lg:px-12">
                 <div class="text-center mb-12">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold block mb-3 font-brand-cinzel">
-                        LET'S TALK ABOUT YOUR DAY
-                    </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-espresso mb-4">
-                        Your celebration <span class="italic font-light gold-gradient-text">starts here.</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-medium text-brand-espresso mb-4">
+                        Let's talk about your wedding.
                     </h2>
-                    <p class="text-sm text-brand-espresso/70 font-light">
-                        Have a date in mind or an idea you'd love to bring to life? We'd love to hear about it.
+                    <p class="text-sm text-brand-espresso/70">
+                        Tell us your date and what you have in mind. We will get back to you with next steps.
                     </p>
                 </div>
 
                 <!-- Contact Form Card -->
-                <form id="everd-contact-form" onsubmit="handleFormSubmit(event)" class="bg-brand-ivory p-8 sm:p-12 rounded-3xl border border-brand-gold/20 shadow-sm space-y-6">
+                <form id="everd-contact-form" onsubmit="handleFormSubmit(event)" class="bg-white p-8 sm:p-12 rounded-lg border border-brand-coffeedeep/15 space-y-6">
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <!-- Your Name -->
                         <div>
                             <label for="name" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">Your Name *</label>
-                            <input type="text" id="name" required placeholder="e.g. Ananya Sharma" class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold">
+                            <input type="text" id="name" required placeholder="e.g. Ananya Sharma" class="field">
                         </div>
 
                         <!-- Email Address -->
                         <div>
                             <label for="email" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">Email Address *</label>
-                            <input type="email" id="email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold">
+                            <input type="email" id="email" required placeholder="name@example.com" class="field">
                         </div>
                     </div>
 
@@ -811,13 +820,13 @@
                         <!-- WhatsApp Number -->
                         <div>
                             <label for="whatsapp" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">WhatsApp Number (Optional)</label>
-                            <input type="tel" id="whatsapp" placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold">
+                            <input type="tel" id="whatsapp" placeholder="+91 98765 43210" class="field">
                         </div>
 
                         <!-- Wedding Date -->
                         <div>
                             <label for="date" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">Wedding Date</label>
-                            <input type="date" id="date" class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold text-brand-espresso">
+                            <input type="date" id="date" class="field">
                         </div>
                     </div>
 
@@ -825,7 +834,7 @@
                         <!-- Type of Invitation -->
                         <div>
                             <label for="type" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">Type of Invitation</label>
-                            <select id="type" class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold">
+                            <select id="type" class="field">
                                 <option value="Digital Invitation Card">Digital Invitation Card</option>
                                 <option value="Interactive Wedding Website">Interactive Wedding Website</option>
                                 <option value="Animated / Video Story">Animated / Video Story</option>
@@ -836,7 +845,7 @@
                         <!-- Preferred Design Style -->
                         <div>
                             <label for="style" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">Preferred Design Style</label>
-                            <select id="style" class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold">
+                            <select id="style" class="field">
                                 <option value="Traditional & Royal Floral">Traditional & Royal Floral</option>
                                 <option value="Minimalist & Modern Editorial">Minimalist & Modern Editorial</option>
                                 <option value="Romantic Pastel & Botanical">Romantic Pastel & Botanical</option>
@@ -848,13 +857,13 @@
                     <!-- Tell Us About Your Celebration -->
                     <div>
                         <label for="message" class="block text-xs uppercase tracking-wider text-brand-espresso font-medium mb-2">Tell Us About Your Celebration</label>
-                        <textarea id="message" rows="4" placeholder="Share any specific details, venues, ceremonies, or special requests..." class="w-full px-4 py-3 rounded-xl bg-white border border-brand-gold/20 text-brand-espresso text-sm focus:outline-none focus:border-brand-gold"></textarea>
+                        <textarea id="message" rows="4" placeholder="Share any specific details, venues, ceremonies, or special requests..." class="field"></textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="text-center pt-2">
-                        <button type="submit" class="w-full sm:w-auto px-10 py-4 text-xs font-semibold uppercase tracking-widest text-brand-ivory bg-brand-espresso hover:bg-brand-gold transition-all duration-300 rounded-full shadow-lg">
-                            Send Enquiry via WhatsApp / Email
+                        <button type="submit" class="w-full sm:w-auto px-10 py-4 text-xs font-semibold uppercase tracking-widest text-brand-ivory bg-brand-espresso hover:bg-brand-coffeedeep transition-all duration-300 rounded-sm shadow-lg">
+                            Send Enquiry via WhatsApp
                         </button>
                     </div>
 
@@ -865,7 +874,7 @@
         </section>
     </main>
 
-    <!-- SECTION 11: FOOTER -->
+    <!-- FOOTER -->
     <footer class="bg-brand-darkbg text-brand-ivory border-t border-brand-gold/20 py-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/10">
@@ -883,28 +892,29 @@
                             <span class="font-brand-cinzel text-[9px] text-brand-gold tracking-[0.25em] block">W E D D I N G</span>
                         </div>
                     </div>
-                    <p class="font-script text-2xl text-brand-gold">Your love story, beautifully invited.</p>
-                    <p class="text-xs text-brand-ivory/60 max-w-sm leading-relaxed font-light">
-                        A boutique digital wedding invitation design studio creating bespoke interactive online invitations and personal wedding websites.
+                    <p class="text-xs text-brand-ivory/60 max-w-sm leading-relaxed">
+                        Digital wedding invitations and wedding websites, designed one couple at a time.
                     </p>
                 </div>
 
                 <!-- Quick Navigation Links -->
                 <div class="md:col-span-3">
                     <h4 class="text-xs uppercase tracking-widest text-brand-gold font-semibold mb-4 font-brand-cinzel">Navigation</h4>
-                    <ul class="space-y-2 text-xs text-brand-ivory/70 font-light">
+                    <ul class="space-y-2 text-xs text-brand-ivory/70">
                         <li><a href="#home" class="hover:text-brand-gold transition-colors">Home</a></li>
                         <li><a href="#about" class="hover:text-brand-gold transition-colors">About Us</a></li>
-                        <li><a href="#services" class="hover:text-brand-gold transition-colors">Services</a></li>
-                        <li><a href="#work" class="hover:text-brand-gold transition-colors">Featured Work</a></li>
-                        <li><a href="#faq" class="hover:text-brand-gold transition-colors">Frequently Asked Questions</a></li>
+                        <li><a href="#occasions" class="hover:text-brand-gold transition-colors">What We Create</a></li>
+                        <li><a href="#work" class="hover:text-brand-gold transition-colors">Our Work</a></li>
+                        <li><a href="#how-it-works" class="hover:text-brand-gold transition-colors">How It Works</a></li>
+                        <li><a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a></li>
+                        <li><a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Connect & Social -->
                 <div class="md:col-span-4">
                     <h4 class="text-xs uppercase tracking-widest text-brand-gold font-semibold mb-4 font-brand-cinzel">Connect With Studio</h4>
-                    <p class="text-xs text-brand-ivory/70 mb-4 font-light">Follow our latest bespoke invitation designs and couple stories.</p>
+                    <p class="text-xs text-brand-ivory/70 mb-4">Follow our latest invitation designs on Instagram.</p>
                     
                     <div class="flex items-center gap-4">
                         <a href="https://instagram.com/everdwedding" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-ivory hover:text-brand-gold hover:border-brand-gold transition-colors" aria-label="Instagram">
@@ -921,39 +931,17 @@
 
             </div>
 
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-brand-ivory/50">
-                <p>© 2026 EverD Wedding. Made with love. All rights reserved.</p>
-                <p class="mt-2 sm:mt-0 font-light">Bespoke Digital Wedding Invitations & Websites &nbsp;•&nbsp; hello@everdwedding.com</p>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-ivory/60">
+                <p>© 2026 EverD Wedding. All rights reserved.</p>
+                <a href="mailto:everdwedding@gmail.com" class="hover:text-brand-gold transition-colors">everdwedding@gmail.com</a>
             </div>
         </div>
     </footer>
 
-    <!-- Project Detail Modal Frame -->
-    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-brand-espresso/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
-        <div class="bg-brand-ivory max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl border border-brand-gold/30 flex flex-col max-h-[90vh]">
-            <div class="p-6 border-b border-brand-gold/20 flex justify-between items-center bg-white">
-                <div>
-                    <h3 id="modal-title" class="font-serif text-2xl font-semibold text-brand-espresso">Project Title</h3>
-                    <p id="modal-subtitle" class="text-xs text-brand-gold uppercase tracking-wider font-medium"></p>
-                </div>
-                <button onclick="closeProjectModal()" class="text-brand-espresso hover:text-brand-gold p-2" aria-label="Close modal">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <div class="p-6 overflow-y-auto space-y-4">
-                <div class="rounded-2xl overflow-hidden border border-brand-gold/20">
-                    <img id="modal-image" src="" alt="Project Invitation Preview" class="w-full h-64 sm:h-80 object-cover">
-                </div>
-                <p class="text-xs text-brand-espresso/80 leading-relaxed font-light">
-                    This bespoke invitation includes customized typography, interactive itinerary, background wedding music, integrated venue maps, and a seamless digital RSVP portal.
-                </p>
-            </div>
-            <div class="p-6 border-t border-brand-gold/20 bg-white flex justify-end gap-3">
-                <button onclick="closeProjectModal()" class="px-5 py-2.5 text-xs uppercase tracking-wider font-semibold text-brand-espresso border border-brand-espresso/20 rounded-full">Close</button>
-                <a href="#contact" onclick="closeProjectModal()" class="px-6 py-2.5 text-xs uppercase tracking-wider font-semibold text-brand-ivory bg-brand-espresso rounded-full hover:bg-brand-gold">Enquire Similar Design</a>
-            </div>
-        </div>
-    </div>
+    <!-- Floating WhatsApp button -->
+    <a href="https://wa.me/916282747847" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xl hover:scale-105 transition-transform">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
 
     <script>
         // Mobile Menu Toggle Logic
@@ -992,6 +980,8 @@
             for (let i = 1; i <= 6; i++) {
                 const a = document.getElementById(`faq-ans-${i}`);
                 const ic = document.getElementById(`faq-icon-${i}`);
+                const b = document.getElementById(`faq-btn-${i}`);
+                if (b) b.setAttribute('aria-expanded', 'false');
                 if (a && ic) {
                     a.classList.add('hidden');
                     ic.classList.remove('fa-minus', 'rotate-180');
@@ -1004,19 +994,8 @@
                 answer.classList.remove('hidden');
                 icon.classList.remove('fa-plus');
                 icon.classList.add('fa-minus', 'rotate-180');
+                document.getElementById(`faq-btn-${index}`).setAttribute('aria-expanded', 'true');
             }
-        }
-
-        // Project Showcase Modal Functions
-        function openProjectModal(title, subtitle, imgUrl) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-subtitle').innerText = subtitle;
-            document.getElementById('modal-image').src = imgUrl;
-            document.getElementById('project-modal').classList.remove('hidden');
-        }
-
-        function closeProjectModal() {
-            document.getElementById('project-modal').classList.add('hidden');
         }
 
         // Handle Contact Form Submission & Generate Direct WhatsApp Inquiry
@@ -1033,18 +1012,98 @@
 
             const status = document.getElementById('form-status');
             
-            // Construct pre-filled WhatsApp message URL with your studio number (e.g. 919876543210)
+            // Construct pre-filled WhatsApp message URL with studio number
             const studioWhatsAppNumber = "916282747847"; 
             const fullMessage = `Hello EverD Wedding! I am interested in creating a digital invitation.%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*WhatsApp:* ${encodeURIComponent(whatsapp)}%0A*Wedding Date:* ${encodeURIComponent(date)}%0A*Type:* ${encodeURIComponent(type)}%0A*Style:* ${encodeURIComponent(style)}%0A*Message:* ${encodeURIComponent(message)}`;
             
             status.classList.remove('hidden', 'bg-red-100', 'text-red-700');
             status.classList.add('bg-emerald-100', 'text-emerald-800');
-            status.innerHTML = `<i class="fa-solid fa-check-circle mr-2"></i> Thank you ${name}! Opening WhatsApp to connect directly with EverD Studio...`;
+            status.innerHTML = `<i class="fa-solid fa-check-circle mr-2"></i> Thank you ${name}! Opening WhatsApp so you can connect directly with EverD Studio...`;
 
-            setTimeout(() => {
-                window.open(`https://wa.me/${studioWhatsAppNumber}?text=${fullMessage}`, '_blank');
-            }, 1200);
+            // Open directly inside the click handler so mobile browsers don't block the popup
+            window.open(`https://wa.me/${studioWhatsAppNumber}?text=${fullMessage}`, '_blank', 'noopener');
         }
+
+        // Header shadow on scroll
+        const header = document.getElementById('main-header');
+        const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // Occasion carousel
+        (function () {
+            const root = document.getElementById('occasion-carousel');
+            const track = document.getElementById('occasion-track');
+            const dotsWrap = document.getElementById('occasion-dots');
+            if (!root || !track) return;
+
+            const slides = track.children.length;
+            let perPage = 4, pages = 1, page = 0;
+
+            function layout() {
+                perPage = window.innerWidth >= 1024 ? 4 : 2;
+                pages = Math.ceil(slides / perPage);
+                page = Math.min(page, pages - 1);
+                dotsWrap.innerHTML = '';
+                for (let i = 0; i < pages; i++) {
+                    const d = document.createElement('button');
+                    d.type = 'button';
+                    d.className = 'occasion-dot';
+                    d.setAttribute('aria-label', `Show slide ${i + 1} of ${pages}`);
+                    d.addEventListener('click', () => go(i));
+                    dotsWrap.appendChild(d);
+                }
+                go(page);
+            }
+
+            function go(i) {
+                page = (i + pages) % pages;
+                track.style.transform = `translateX(-${page * 100}%)`;
+                [...dotsWrap.children].forEach((d, n) => d.setAttribute('aria-current', n === page ? 'true' : 'false'));
+            }
+
+            // Swipe / drag (touch, pen and mouse) with the cards following the finger
+            const viewport = document.getElementById('occasion-viewport');
+            let startX = 0, startY = 0, dx = 0, dragging = false, locked = false, moved = false;
+
+            viewport.addEventListener('pointerdown', e => {
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                dragging = true; locked = false; moved = false;
+                startX = e.clientX; startY = e.clientY; dx = 0;
+            });
+
+            window.addEventListener('pointermove', e => {
+                if (!dragging) return;
+                dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                if (!locked) {
+                    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+                    if (Math.abs(dy) > Math.abs(dx)) { dragging = false; return; } // vertical scroll
+                    locked = true; moved = true;
+                    track.style.transition = 'none';
+                }
+                track.style.transform = `translateX(calc(-${page * 100}% + ${dx}px))`;
+            });
+
+            function endDrag() {
+                if (!dragging) return;
+                dragging = false;
+                track.style.transition = '';
+                const threshold = Math.min(80, viewport.offsetWidth * 0.15);
+                if (locked && Math.abs(dx) > threshold) go(page + (dx < 0 ? 1 : -1));
+                else go(page);
+            }
+            window.addEventListener('pointerup', endDrag);
+            window.addEventListener('pointercancel', endDrag);
+
+            // Stop mouse text/image ghost-dragging and accidental link clicks after a drag
+            viewport.addEventListener('dragstart', e => e.preventDefault());
+            viewport.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+
+            let resizeT;
+            window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(layout, 150); });
+            layout();
+        })();
     </script>
 </body>
 </html>
